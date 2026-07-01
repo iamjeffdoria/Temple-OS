@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TempleOS // A Tribute to Terry A. Davis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- BOOT SEQUENCE -->
+<div id="boot-screen">
+  <div id="boot-text"></div>
+  <div id="boot-skip">press any key, or wait&hellip;</div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="site-nav">
+  <a href="#hero" class="nav-brand">TEMPLE_OS&#95;</a>
+
+  <ul id="nav-links-desktop">
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#holyc">HolyC</a></li>
+    <li><a href="#oracle-section">Oracle</a></li>
+    <li><a href="#hymn-section">Hymn</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+  </ul>
+
+  <button id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-sidebar">MENU</button>
+</nav>
+
+<!-- MOBILE SIDEBAR -->
+<div id="sidebar-overlay"></div>
+<aside id="site-sidebar" aria-hidden="true">
+  <button id="sidebar-close" aria-label="Close menu">&times;</button>
+  <ul id="nav-links-mobile">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#holyc">HolyC</a></li>
+    <li><a href="#oracle-section">Oracle</a></li>
+    <li><a href="#hymn-section">Hymn</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+  </ul>
+</aside>
+
+<!-- CRT FRAME -->
+<div id="crt-wrap" class="crt-off">
+
+  <button id="crt-toggle" aria-pressed="false">CRT MODE: OFF</button>
+
+<!-- HERO -->
+  <header id="hero">
+    <div class="scanline-overlay" aria-hidden="true"></div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">640 &times; 480 &middot; 16 COLORS &middot; RING 0</p>
+        <h1>TERRY A. DAVIS</h1>
+        <p class="hero-sub">1969 &ndash; 2018</p>
+        <p class="hero-lede">
+          Alone, over roughly a decade, he wrote an operating system from the ground up &mdash;
+          kernel, compiler, language, editor, and graphics library &mdash; targeting a machine
+          he described as a "temple" for God. This is a tribute to the engineering, not the ending.
+        </p>
+        <a href="#architecture" class="hero-cta">Explore the system &darr;</a>
+      </div>
+
+      <div class="hero-portrait">
+        <img src="terry.jpg" alt="Terry A. Davis" />
+        <span class="portrait-tag">RING&nbsp;0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stat">
+      <span class="stat-num">~100k</span>
+      <span class="stat-label">lines of HolyC, written solo</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1</span>
+      <span class="stat-label">privilege ring &mdash; no user/kernel split</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">16</span>
+      <span class="stat-label">colors, by design constraint</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">~10</span>
+      <span class="stat-label">years of continuous development</span>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE EXPLORER -->
+  <section id="architecture">
+    <h2><span class="tag">01</span> System Architecture</h2>
+    <p class="section-intro">
+      TempleOS collapses distinctions modern operating systems treat as sacred: user mode
+      and kernel mode, compiled and interpreted, editor and shell. Click a component to
+      read how it worked.
+    </p>
+
+    <div id="arch-diagram">
+      <svg id="arch-svg" viewBox="0 0 800 420" role="group" aria-label="TempleOS architecture diagram">
+        <!-- connecting lines -->
+        <g class="arch-lines" stroke="var(--cyan)" stroke-width="1.5" opacity="0.5">
+          <line x1="400" y1="100" x2="400" y2="180"/>
+          <line x1="400" y1="180" x2="180" y2="260"/>
+          <line x1="400" y1="180" x2="400" y2="260"/>
+          <line x1="400" y1="180" x2="620" y2="260"/>
+          <line x1="180" y1="260" x2="180" y2="340"/>
+          <line x1="620" y1="260" x2="620" y2="340"/>
+        </g>
+
+        <g class="arch-node" data-node="kernel" tabindex="0" role="button" aria-label="Kernel">
+          <rect x="320" y="60" width="160" height="60" rx="4"/>
+          <text x="400" y="96">KERNEL</text>
+        </g>
+
+        <g class="arch-node" data-node="holyc" tabindex="0" role="button" aria-label="HolyC">
+          <rect x="320" y="180" width="160" height="60" rx="4"/>
+          <text x="400" y="216">HOLYC</text>
+        </g>
+
+        <g class="arch-node" data-node="graphics" tabindex="0" role="button" aria-label="Graphics">
+          <rect x="100" y="260" width="160" height="60" rx="4"/>
+          <text x="180" y="296">GRAPHICS</text>
+        </g>
+
+        <g class="arch-node" data-node="filesystem" tabindex="0" role="button" aria-label="Filesystem">
+          <rect x="320" y="260" width="160" height="60" rx="4"/>
+          <text x="400" y="296">REDSEA FS</text>
+        </g>
+
+        <g class="arch-node" data-node="oracle" tabindex="0" role="button" aria-label="Oracle">
+          <rect x="540" y="260" width="160" height="60" rx="4"/>
+          <text x="620" y="296">ORACLE</text>
+        </g>
+
+        <g class="arch-node" data-node="shell" tabindex="0" role="button" aria-label="Shell / Editor">
+          <rect x="40" y="340" width="280" height="60" rx="4"/>
+          <text x="180" y="376">DOLDOC SHELL / EDITOR</text>
+        </g>
+
+        <g class="arch-node" data-node="compiler" tabindex="0" role="button" aria-label="JIT Compiler">
+          <rect x="480" y="340" width="280" height="60" rx="4"/>
+          <text x="620" y="376">JIT-COMPILED CONSOLE</text>
+        </g>
+      </svg>
+    </div>
+
+    <div id="arch-detail" aria-live="polite">
+      <p id="arch-detail-placeholder">Select a component above.</p>
+    </div>
+  </section>
+
+  <!-- HOLYC SANDBOX -->
+  <section id="holyc">
+    <h2><span class="tag">02</span> HolyC, briefly</h2>
+    <p class="section-intro">
+      HolyC was Terry's own language: C syntax fused with a built-in interpreter, so code could
+      run instantly or compile to machine code with no separate build step. Numeric literals
+      could be typed straight into range-checked integer types, and the shell itself was just
+      HolyC. Here's a flavor of it.
+    </p>
+    <pre id="holyc-code" class="code-block"><code>U0 Main()
+{
+  I64 i;
+  "Hail the Lord!\n";
+  for (i = 0; i &lt; 8; i++)
+    Print("Line %d of 640x480\n", i);
+}
+Main;</code></pre>
+    <p class="code-caption">U0 = "void". Functions could be called directly at the prompt, like a live REPL over the whole OS.</p>
+  </section>
+
+  <!-- ORACLE -->
+  <section id="oracle-section">
+    <h2><span class="tag">03</span> The Oracle</h2>
+    <p class="section-intro">
+      TempleOS shipped with a pseudo-random line generator that pulled from a pool of Bible
+      verses and system phrases &mdash; Terry's method for what he called divine input during
+      development decisions. This is a lightweight, respectful stand-in: press the button for
+      a random line from a small curated pool.
+    </p>
+<div id="oracle-box">
+      <p id="oracle-output">&hellip;</p>
+      <button id="oracle-btn">Consult the Oracle</button>
+    </div>
+  </section>
+
+  <!-- HYMN -->
+  <section id="hymn-section">
+    <h2><span class="tag">03.5</span> The Hymn</h2>
+    <p class="section-intro">
+      TempleOS could generate hymns algorithmically, and Terry recorded himself playing and
+      demoing them on stream. This recording is shared here in that spirit &mdash; public
+      domain, made in tribute.
+    </p>
+
+    <div id="hymn-box">
+      <button id="hymn-toggle" aria-label="Play hymn" aria-pressed="false">
+        <svg id="hymn-icon-play" viewBox="0 0 24 24" width="22" height="22"><polygon points="6,4 20,12 6,20"/></svg>
+        <svg id="hymn-icon-pause" viewBox="0 0 24 24" width="22" height="22" hidden><rect x="5" y="4" width="5" height="16"/><rect x="14" y="4" width="5" height="16"/></svg>
+      </button>
+
+      <div id="hymn-info">
+        <p id="hymn-title">TempleOS Hymn</p>
+        <div id="hymn-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div id="hymn-time">
+          <span id="hymn-current">0:00</span>
+          <span id="hymn-duration">0:00</span>
+        </div>
+      </div>
+
+      <audio id="hymn-audio" src="hymn.mp3" preload="metadata"></audio>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <h2><span class="tag">04</span> Timeline</h2>
+    <ol id="timeline-list">
+      <li>
+        <span class="t-year">1990s</span>
+        <p>Terry Davis works as a programmer, including on real-time systems, after studying
+        electrical engineering and computer science.</p>
+      </li>
+      <li>
+        <span class="t-year">2003</span>
+        <p>Following a mental health crisis, Terry begins what he describes as a directive to
+        build an operating system, later framed as a "temple" commanded by God.</p>
+      </li>
+      <li>
+        <span class="t-year">2003&ndash;2010</span>
+        <p>Solo development of the kernel, the HolyC language and its compiler/interpreter, a
+        custom filesystem, and a 640x480, 16-color graphics stack.</p>
+      </li>
+      <li>
+        <span class="t-year">2013</span>
+        <p>TempleOS reaches a self-described "complete" 64-bit release after roughly a decade
+        of work, alongside a large body of related writing.</p>
+      </li>
+      <li>
+        <span class="t-year">2010s</span>
+        <p>Terry livestreams programming sessions, drawing a large online audience, some
+        respectful and some exploitative of his visible mental illness.</p>
+      </li>
+      <li>
+        <span class="t-year">2018</span>
+        <p>Terry Davis dies after being struck by a train, following years of struggle with
+        schizophrenia and periods of homelessness.</p>
+      </li>
+    </ol>
+  </section>
+
+  <footer id="site-footer">
+    <p>Built as a fan tribute. Not affiliated with Terry Davis's estate or any official TempleOS project.</p>
+    <p>TempleOS remains available as open-source software from its official archives.</p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
