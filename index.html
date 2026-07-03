@@ -24,6 +24,7 @@
   <ul id="nav-links-desktop">
     <li><a href="#architecture">Architecture</a></li>
     <li><a href="#holyc">HolyC</a></li>
+    <li><a href="#console-section">Console</a></li>
     <li><a href="#oracle-section">Oracle</a></li>
     <li><a href="#hymn-section">Hymn</a></li>
     <li><a href="#timeline">Timeline</a></li>
@@ -40,6 +41,7 @@
     <li><a href="#hero">Home</a></li>
     <li><a href="#architecture">Architecture</a></li>
     <li><a href="#holyc">HolyC</a></li>
+    <li><a href="#console-section">Console</a></li>
     <li><a href="#oracle-section">Oracle</a></li>
     <li><a href="#hymn-section">Hymn</a></li>
     <li><a href="#timeline">Timeline</a></li>
@@ -176,6 +178,27 @@
 }
 Main;</code></pre>
     <p class="code-caption">U0 = "void". Functions could be called directly at the prompt, like a live REPL over the whole OS.</p>
+  </section>
+
+  <!-- CONSOLE -->
+  <section id="console-section">
+    <h2><span class="tag">02.5</span> Try the Console</h2>
+    <p class="section-intro">
+      A tiny, safe simulation of that shell-as-REPL idea. Type a command and press Enter.
+      Type <code>help</code> to see what's understood.
+    </p>
+
+    <div id="console-box">
+      <div id="console-output" aria-live="polite">
+        <p>TempleOS Console Simulator v0.1</p>
+        <p>Type 'help' to begin.</p>
+      </div>
+      <div id="console-input-row">
+        <span id="console-prompt">&gt;</span>
+        <input id="console-input" type="text" autocomplete="off" spellcheck="false"
+               aria-label="Console command input" />
+      </div>
+    </div>
   </section>
 
   <!-- ORACLE -->

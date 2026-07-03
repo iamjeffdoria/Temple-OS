@@ -243,3 +243,46 @@ document.addEventListener("keydown", (e) => {
     closeSidebar();
   }
 });
+
+// ---- Console simulator ----
+(function () {
+  const output = document.getElementById('console-output');
+  const input = document.getElementById('console-input');
+  if (!output || !input) return;
+
+  const responses = {
+    help: "Commands: help, whoami, date, credo, reboot, clear, ls",
+    whoami: "Ring 0. No user/kernel split. You are root by default.",
+    date: () => new Date().toString(),
+    credo: "\"Compilers are the highest of arts.\" \u2014 spirit of the project",
+    ls: "kernel.c  holyc.c  redsea.fs  oracle.hc  doldoc.hc",
+    reboot: "Rebooting... just kidding. This is a tribute page.",
+  };
+
+  function printLine(text, cls) {
+    const p = document.createElement('p');
+    if (cls) p.className = cls;
+    p.textContent = text;
+    output.appendChild(p);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    const raw = input.value.trim();
+    if (!raw) return;
+
+    printLine('> ' + raw, 'console-echo');
+
+    const cmd = raw.toLowerCase();
+    if (cmd === 'clear') {
+      output.innerHTML = '';
+    } else if (cmd in responses) {
+      const r = responses[cmd];
+      printLine(typeof r === 'function' ? r() : r);
+    } else {
+      printLine(`Unknown command: "${raw}". Type 'help'.`, 'console-error');
+    }
+    input.value = '';
+  });
+})();
