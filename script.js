@@ -250,13 +250,32 @@ document.addEventListener("keydown", (e) => {
   const input = document.getElementById('console-input');
   if (!output || !input) return;
 
+const commandHistory = [];
+
   const responses = {
-    help: "Commands: help, whoami, date, credo, reboot, clear, ls",
+    help: "Commands: help, whoami, date, credo, reboot, clear, ls, uptime, temple, man, neofetch, sudo, history, echo <text>, exit",
     whoami: "Ring 0. No user/kernel split. You are root by default.",
     date: () => new Date().toString(),
     credo: "\"Compilers are the highest of arts.\" \u2014 spirit of the project",
     ls: "kernel.c  holyc.c  redsea.fs  oracle.hc  doldoc.hc",
     reboot: "Rebooting... just kidding. This is a tribute page.",
+    uptime: "System uptime: ~15 years (and counting).",
+    temple: "\"This is a temple for God.\" \u2014 Terry A. Davis",
+    man: "No man pages here. Terry wrote every layer himself \u2014 read the source instead.",
+    sudo: "Nice try. In Ring 0, everyone is already root.",
+    neofetch: () =>
+      "TempleOS (tribute)\n" +
+      "------------------\n" +
+      "Resolution: 640x480x16\n" +
+      "Kernel: Ring 0, single address space\n" +
+      "Language: HolyC (JIT)\n" +
+      "Filesystem: RedSea\n" +
+      "Uptime: ~15 years",
+    history: () =>
+      commandHistory.length
+        ? commandHistory.join('\n')
+        : "No commands yet.",
+    exit: "There is no escape from the Temple. Refresh to reboot.",
   };
 
   function printLine(text, cls) {
@@ -273,11 +292,16 @@ document.addEventListener("keydown", (e) => {
     if (!raw) return;
 
     printLine('> ' + raw, 'console-echo');
+    commandHistory.push(raw);
 
-    const cmd = raw.toLowerCase();
+    const lower = raw.toLowerCase();
+    const [cmd, ...args] = lower.split(' ');
+
     if (cmd === 'clear') {
       output.innerHTML = '';
-    } else if (cmd in responses) {
+    } else if (cmd === 'echo') {
+      printLine(args.join(' ') || '');
+    } else if (cmd in responses && args.length === 0) {
       const r = responses[cmd];
       printLine(typeof r === 'function' ? r() : r);
     } else {
